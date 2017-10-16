@@ -166,6 +166,9 @@ exports.handler = function (event, context) {
         // Chunk log events before posting to SumoLogic
         awslogsData.logEvents.forEach(function (log, idx, arr) {
             
+            // Remove Message Header
+            log.message = log.message.replace(/^(.*?:)/, "");
+            
             // Remove any trailing \n
             log.message = log.message.replace(/\n$/, '');
             
